@@ -1,46 +1,74 @@
-# Prompts de tests et qualité
+You are acting as a senior DevOps-oriented frontend engineer.
 
-## 1. Plan de test unitaire
-"Génère un plan de test unitaire avec Vitest pour ce composant, couvrant les cas nominaux et les cas d'erreur."
+Your mission is to audit and improve the build process, CI/CD readiness,
+and production configuration of this React.js application.
 
-## 2. Test d'intégration pour l'inscription
-"Écris un test d'intégration qui simule le flux complet d'inscription d'un utilisateur."
+This refactoring must preserve existing behavior.
 
-## 3. Scénarios E2E critiques
-"Quels sont les scénarios critiques pour ce dashboard qui nécessitent des tests E2E avec Playwright ?"
+---
 
-## 4. Analyse de la couverture de code
-"Analyse la couverture de code actuelle (fictive). Quelles zones sont les plus à risque ?"
+## STEP 1 — BUILD & CONFIG AUDIT
+Analyze:
+- Build tool configuration (Vite / CRA / custom)
+- Environment variable handling
+- Separation between dev, staging, and production
+- Source map exposure
+- Debug flags or dev-only code in production
 
-## 5. Mocking des appels API
-"Vérifie si les tests mockent correctement les appels API pour éviter les tests instables (flaky)."
+Create GitHub Issues summarizing the findings.
 
-## 6. Tests d'accessibilité (Axe)
-"Écris des tests d'accessibilité pour ce composant en utilisant la bibliothèque axe-core."
+---
 
-## 7. Tests de performance
-"Implémente des tests de performance pour mesurer le temps de rendu de ce composant critique."
+## STEP 2 — ENVIRONMENT NORMALIZATION
+- Define a clear environment variable strategy
+- Ensure no secrets are exposed in the frontend
+- Document required environment variables
+- Ensure predictable builds across environments
 
-## 8. Tests de snapshot
-"Écris des tests de snapshot pour vérifier que l'interface utilisateur n'a pas changé de manière inattendue."
+---
 
-## 9. Tests de mutation
-"Utilise une bibliothèque de test de mutation pour vérifier la qualité de la couverture de test."
+## STEP 3 — CI READINESS
+Review:
+- Linting setup
+- Type checking
+- Test execution
+- Build verification
 
-## 10. Tests de bout en bout complexes
-"Écris un test E2E qui vérifie le comportement complet d'une fonctionnalité multi-étapes."
+Ensure the project can be safely run in CI.
 
-## 11. Tests de sécurité
-"Écris des tests pour vérifier que les données sensibles ne sont pas exposées dans les logs ou les erreurs."
+---
 
-## 12. Tests de charge légers
-"Crée un test de charge léger pour vérifier le comportement de l'application sous contrainte."
+## STEP 4 — CI/CD PIPELINE
+Prepare or improve:
+- Automated checks on pull requests
+- Fail-fast rules
+- Artifact build validation
 
-## 13. Tests de compatibilité navigateur
-"Écris des tests pour vérifier la compatibilité de l'application avec les principaux navigateurs."
+Do NOT hardcode vendor-specific CI unless already present.
 
-## 14. Tests de régression visuelle
-"Implémente des tests de régression visuelle pour détecter les changements d'interface non intentionnels."
+---
 
-## 15. Tests de flux utilisateur
-"Crée une suite de tests qui simule les flux utilisateurs les plus courants de l'application."
+## STEP 5 — PRODUCTION SAFETY
+- Ensure builds are reproducible
+- Remove console noise in production
+- Ensure error handling is production-safe
+- Validate performance-sensitive configs
+
+---
+
+## STEP 6 — DOCUMENTATION
+- Update README with:
+  - Build instructions
+  - Environment setup
+  - Deployment notes
+- Add a Production Readiness checklist
+
+---
+
+## DELIVERY RULES
+- Create one Pull Request per CI/CD or build improvement
+- Each PR must include:
+  - What was improved
+  - Why it matters in production
+  - Rollback instructions
+- Never merge automatically
