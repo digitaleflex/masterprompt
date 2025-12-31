@@ -1,0 +1,14 @@
+{
+  "name": "react-devsecops-security-config",
+  "version": "1.0.0",
+  "scripts": {
+    "security:audit": "npm audit --audit-level moderate",
+    "security:check": "npx lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm",
+    "security:secrets": "npx @microsoft/secretscan --include src/ --include package.json",
+    "security:deps": "npx npm-check-updates -u && npm install"
+  },
+  "devDependencies": {
+    "lockfile-lint": "^4.7.1",
+    "@microsoft/secretscan": "^3.0.0"
+  }
+}

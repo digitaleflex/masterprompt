@@ -1,0 +1,42 @@
+{
+  "client": {
+    "security": {
+      "csp": {
+        "directives": {
+          "default-src": "'self'",
+          "script-src": "'self' 'unsafe-inline' https:",
+          "style-src": "'self' 'unsafe-inline' https:",
+          "img-src": "'self' data: https:",
+          "font-src": "'self' https:",
+          "connect-src": "'self' http://localhost:5000 https://api.example.com",
+          "frame-ancestors": "'none'"
+        }
+      }
+    }
+  },
+  "server": {
+    "security": {
+      "cors": {
+        "origin": ["http://localhost:3000", "http://localhost:3001"],
+        "credentials": true
+      },
+      "rateLimit": {
+        "windowMs": 15 * 60 * 1000,
+        "max": 100
+      }
+    }
+  },
+  "fullstack": {
+    "authentication": {
+      "type": "jwt",
+      "options": {
+        "secret": "process.env.JWT_SECRET",
+        "expiresIn": "24h"
+      }
+    },
+    "communication": {
+      "protocol": "https",
+      "validation": true
+    }
+  }
+}

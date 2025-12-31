@@ -1,0 +1,39 @@
+{
+  "security": {
+    "helmet": {
+      "enabled": true,
+      "options": {
+        "crossOriginResourcePolicy": { "policy": "same-site" },
+        "crossOriginEmbedderPolicy": true,
+        "crossOriginOpenerPolicy": { "policy": "same-origin" },
+        "dnsPrefetchControl": { "allow": true },
+        "frameguard": { "action": "deny" },
+        "hidePoweredBy": true,
+        "hsts": { "maxAge": 31536000, "includeSubDomains": true },
+        "ieNoOpen": true,
+        "noSniff": true,
+        "originAgentCluster": true,
+        "permittedCrossDomainPolicies": { "allowedPolicies": "none" },
+        "referrerPolicy": { "policy": "no-referrer" },
+        "xssFilter": true
+      }
+    },
+    "rateLimit": {
+      "windowMs": 15 * 60 * 1000,
+      "max": 100,
+      "message": "Trop de requêtes depuis cette IP"
+    },
+    "sanitization": {
+      "mongo": true,
+      "xss": true
+    }
+  },
+  "authentication": {
+    "enabled": true,
+    "strategy": "jwt",
+    "options": {
+      "secret": "process.env.JWT_SECRET",
+      "expiresIn": "24h"
+    }
+  }
+}
